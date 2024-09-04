@@ -8,7 +8,7 @@ This is a small demo project, done while helping with the investigation of `mssq
 
 Considering such table:
 ```sql
-CREATE TABLE user_tokens (
+CREATE TABLE test.dbo.user_tokens (
     id       int           IDENTITY(1,1)                        NOT NULL,
     username varchar(77)   COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
     token    varbinary(40) NULL
@@ -40,8 +40,10 @@ you can call the `/tokens/validate` endpoint:
 
 And in its output you'll see:
 ```
-2024-09-03T17:33:24.372+03:00  INFO 1813529 --- [mssql_jdbc_issue_2510] [nio-8080-exec-8] o.d.m.controllers.TokenController        : Using find1, the token was not found.
-2024-09-03T17:33:24.396+03:00  INFO 1813529 --- [mssql_jdbc_issue_2510] [nio-8080-exec-8] o.d.m.controllers.TokenController        : Using find2, the token was  found.
+2024-09-04T10:54:12.773+03:00  INFO 441719 --- [mssql_jdbc_issue_2510] [nio-8080-exec-1] o.d.m.repositories.TokenRepo             : [find1] Looking for token 'someToken' ...
+2024-09-04T10:54:12.790+03:00  INFO 441719 --- [mssql_jdbc_issue_2510] [nio-8080-exec-1] o.d.m.controllers.TokenController        : [find1] The token was not found.
+2024-09-04T10:54:12.793+03:00  INFO 441719 --- [mssql_jdbc_issue_2510] [nio-8080-exec-1] o.d.m.repositories.TokenRepo             : [find2] Looking for token 'someToken' ...
+2024-09-04T10:54:12.799+03:00  INFO 441719 --- [mssql_jdbc_issue_2510] [nio-8080-exec-1] o.d.m.controllers.TokenController        : [find2] The token was found.
 ```
 which demonstrates that:
 - `find1` does not return the entry.<br/>

@@ -33,10 +33,10 @@ public class TokenController {
         Optional<TokenInfo> optionalTokenInfo;
 
         optionalTokenInfo = tokenRepo.find1(request.token);
-        log.info("Using find1, the token was {} found.", optionalTokenInfo.isPresent() ? "" : "not");
+        log.info("[find1] The token was {}found.", optionalTokenInfo.isPresent() ? "" : "not ");
 
         optionalTokenInfo = tokenRepo.find2(request.token);
-        log.info("Using find2, the token was {} found.", optionalTokenInfo.isPresent() ? "" : "not");
+        log.info("[find2] The token was {}found.", optionalTokenInfo.isPresent() ? "" : "not ");
 
         if (optionalTokenInfo.isPresent()) {
             return ResponseEntity.ok(optionalTokenInfo.get());
