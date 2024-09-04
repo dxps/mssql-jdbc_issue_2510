@@ -32,11 +32,13 @@ public class TokenRepo {
         } catch (SQLException e) {
             throw new RuntimeException("Failed to get connection to SQL Server", e);
         }
+
         log.info("[find1] Looking for token '{}' ...", token);
+
         try {
             var ps = conn.prepareStatement(findByUnhashedTokenQuery);
             ps.setString(1, token);
-            var rs =                    ps.executeQuery();
+            var rs = ps.executeQuery();
 
             Optional<TokenInfo> result;
             if (rs.next()) {
@@ -62,8 +64,11 @@ public class TokenRepo {
         } catch (SQLException e) {
             throw new RuntimeException("Failed to get connection to SQL Server", e);
         }
+
         log.info("[find2] Looking for token '{}' ...", token);
+
         var query = findByUnhashedTokenQuery.replace("?", String.format("'%s'", token));
+
         try {
             var rs = conn.prepareStatement(query).executeQuery();
             Optional<TokenInfo> result;
