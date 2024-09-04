@@ -36,9 +36,10 @@ public class TokenRepo {
         log.info("[find1] Looking for token '{}' ...", token);
 
         try {
-            var ps = conn.prepareStatement(findByUnhashedTokenQuery);
-            ps.setString(1, token);
-            var rs = ps.executeQuery();
+            var pstmt = conn.prepareStatement(findByUnhashedTokenQuery);
+            pstmt.setString(1, token);
+            pstmt.executeQuery();
+            var rs = pstmt.getResultSet();
 
             Optional<TokenInfo> result;
             if (rs.next()) {
