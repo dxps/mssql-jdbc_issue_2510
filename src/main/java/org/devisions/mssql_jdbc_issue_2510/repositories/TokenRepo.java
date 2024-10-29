@@ -1,15 +1,16 @@
 package org.devisions.mssql_jdbc_issue_2510.repositories;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.Optional;
+
 import org.devisions.mssql_jdbc_issue_2510.config.SQLServerDataSourceConfig;
 import org.devisions.mssql_jdbc_issue_2510.model.TokenInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.Optional;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
@@ -55,7 +56,8 @@ public class TokenRepo {
     }
 
     /**
-     * `find2` avoids using a PreparedStatement with a named parameter by manually constructing the query statement before executing it.
+     * `find2` avoids using a PreparedStatement with a named parameter 
+     * and it manually constructsnthe query statement before executing it.
      */
     public Optional<TokenInfo> find2(String token) {
 

@@ -1,5 +1,6 @@
-### A profile with potentially sensitive data.
+### Profiles with potentially sensitive data.
 /src/main/resources/application-dev.properties
+/src/main/resources/application-dev2.properties
 
 HELP.md
 target/
