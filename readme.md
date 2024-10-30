@@ -2,6 +2,8 @@
 
 This is a small demo project, done while helping with the investigation of `mssql-jdbc`'s [issue 2510](https://github.com/microsoft/mssql-jdbc/issues/2510).
 
+TLDR; Pass `sendStringParametersAsUnicode=false` to the connection parameters. See it included in `spring.datasource.url` config parameter (in `application.properties` file).
+
 <br/>
 
 ### Table schema
